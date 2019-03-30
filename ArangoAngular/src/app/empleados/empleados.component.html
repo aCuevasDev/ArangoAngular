@@ -1,1 +1,4 @@
-<app-data-table [data]="empleados" [displayedColumns]="displayColumns" [nameLabel]="nombre" ></app-data-table>
+<div *ngIf="!isLoading">
+    <app-data-table [dataObservable]="empleadosObservable" [displayedColumns]="displayColumns" nameLabel="nombreCompleto"
+        tipoNuevo="empleado"></app-data-table>
+</div>

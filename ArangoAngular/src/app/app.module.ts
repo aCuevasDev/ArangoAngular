@@ -13,6 +13,9 @@ import { RankingComponent } from './ranking/ranking.component';
 import { DataTableComponent } from './data-table/data-table.component';
 import { DepartamentosComponent } from './departamentos/departamentos.component';
 import { PrimeNGModule } from './primeng.module';
+import { HttpClientModule } from '@angular/common/http';
+import { SpinnerComponent } from './spinner/spinner.component';
+
 
 @NgModule({
   declarations: [
@@ -24,13 +27,14 @@ import { PrimeNGModule } from './primeng.module';
     IncidenciasComponent,
     RankingComponent,
     DataTableComponent,
-    DepartamentosComponent
+    DepartamentosComponent,
+    SpinnerComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
     MaterialModule,
-    PrimeNGModule
+    PrimeNGModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

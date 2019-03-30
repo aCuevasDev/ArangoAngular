@@ -1,0 +1,26 @@
+table {
+  width: 100%;
+}
+
+.buttons {
+  background-color: grey;
+}
+
+.center {
+  text-align: center;
+}
+
+#newPerson {
+  margin-top: 1em;
+  margin-left: 50%;
+  margin-bottom: 0.5em;
+}
+
+#margins {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.custom-mat-elevation-z8 {
+box-shadow: 0 0px 5px -3px rgba(0,0,0,.2),0 0px 10px 1px rgba(0,0,0,.14),0 0px 14px 2px rgba(0,0,0,.12);
+}

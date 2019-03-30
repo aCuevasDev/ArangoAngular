@@ -4,20 +4,34 @@ import { RestService } from '../rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventEmitter } from 'events';
 import { ConfirmationService } from 'primeng/primeng';
+import { style, transition, animate, keyframes, state, trigger } from '@angular/animations';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-data-table',
     templateUrl: './data-table.component.html',
-    styleUrls: ['./data-table.component.css']
+    styleUrls: ['./data-table.component.css'],
+    animations: [
+        trigger('mouseState', [
+            state('out', style({
+                transform: 'scale(1)'
+            })),
+            state('in', style({
+                transform: 'scale(1.15)'
+            })),
+
+        ])]
 })
 export class DataTableComponent implements OnInit {
 
     @Input()
     displayedColumns: string[];
     @Input()
-    data: any[];
+    dataObservable: Observable<any>;
     @Input()
     nameLabel: string;
+    @Input()
+    tipoNuevo: string;
     // tslint:disable-next-line:no-output-on-prefix
     @Output()
     onDelete = new EventEmitter();
@@ -36,7 +50,7 @@ export class DataTableComponent implements OnInit {
         this.setDataSourceAttributes();
     }
     rowNumber = 5;
-    isLoading = false;
+    isLoading: boolean;
     mouseState: ('out' | 'in')[][] = [];
     constructor(
         private restService: RestService,
@@ -56,7 +70,14 @@ export class DataTableComponent implements OnInit {
 
     ngOnInit() {
         this.initAnimations();
-        this.route.paramMap.subscribe(() => this.load());
+        this.load();
+    }
+
+    load() {
+        this.dataObservable.subscribe(data => {
+            this.dataSource.data = data;
+            this.isLoading = false;
+        });
     }
 
     initAnimations() {
@@ -70,14 +91,6 @@ export class DataTableComponent implements OnInit {
         this.mouseState[2][0] = 'out';
     }
 
-    load() {
-        // TODO THIS
-        this.isLoading = true;
-        // tslint:disable-next-line:max-line-length
-        // this.restService.getPersons(this.personType).subscribe(persons => { this.personsDataSource.data = persons; this.isLoading = false; });
-    }
-
-
     delete(data: any) {
         console.log('delete');
         this.onDelete.emit(data);
@@ -88,13 +101,14 @@ export class DataTableComponent implements OnInit {
     }
 
     edit(data: any | null) {
+        console.log('create or edit');
         this.onSelect.emit(data);
     }
 
     askDelete(event: MouseEvent, data: any) {
         // console.log("openConfirmationDialog");
 
-        const message = 'Do you really want to erase: ' + data[this.nameLabel];
+        const message = 'De verdad quieres borrar a: ' + data[this.nameLabel];
         const accept = () => this.delete(data);
 
         this.confirmationService.confirm({
