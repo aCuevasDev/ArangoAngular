@@ -49,7 +49,12 @@ export class RestService {
 
     getIncidencias() {
         const url = `${this.urlBase}incidencia`;
-        return this.http.get<IncidenciaDTO[]>(url).pipe(catchError(this.handleError<IncidenciaDTO[]>()));
+        return this.http.post<IncidenciaDTO[]>(url, this.loggedUser).pipe(catchError(this.handleError<IncidenciaDTO[]>()));
+    }
+
+    updateIncidencia(incidencia: IncidenciaDTO) {
+        const url = `${this.urlBase}incidencia/update`;
+        return this.http.post<IncidenciaDTO[]>(url, incidencia).pipe(catchError(this.handleError<IncidenciaDTO[]>()));
     }
 
     getRanking() {

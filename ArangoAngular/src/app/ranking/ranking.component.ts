@@ -11,11 +11,14 @@ import { RestService } from '../rest.service';
 export class RankingComponent implements OnInit {
 
     rankingObservable: Observable<RankingDTO>;
+    display = ['Nombre', 'Incidencias Resueltas'];
+
     constructor(private restService: RestService) {
         this.rankingObservable = this.restService.getRanking();
     }
 
     ngOnInit() {
+
     }
 
 }

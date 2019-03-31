@@ -22,19 +22,27 @@ export class EditEmployeeComponent implements OnInit {
     // tslint:disable-next-line:max-line-length
     constructor(private cacheService: CacheService, private restService: RestService, private notifier: NotifierService, private navigation: NavigationService) {
         this.empleado = this.cacheService.getData();
-
+        // tslint:disable-next-line:triple-equals
+        const isCurrentEmpleado = (this.empleado.username === this.restService.loggedUser.username);
         // tslint:disable-next-line:forin
         for (const prop in this.empleado) {
             if (
                 prop.toLowerCase().includes('jefe') ||
                 prop.toLowerCase().includes('key') ||
-                prop.toLowerCase().includes('nombrecompleto')
-                ) {} else { this.display.push(prop.charAt(0).toUpperCase() + prop.substr(1)); }
+                prop.toLowerCase().includes('nombrecompleto') ||
+                prop.toLowerCase().includes('contrasenya')
+            ) {
+                if (isCurrentEmpleado && prop.toLowerCase().includes('contrasenya')) {
+                    this.display.push(prop.charAt(0).toUpperCase() + prop.substr(1));
+                }
+            } else { this.display.push(prop.charAt(0).toUpperCase() + prop.substr(1)); }
         }
-        if (this.cacheService.mode === 'EDIT') {
-        this.edit = [true, true, false, true, false, this.empleado.jefe];
+        if (this.cacheService.mode === 'EDIT' && isCurrentEmpleado) {
+            this.edit = [true, true, false, true, false, this.restService.loggedUser.jefe];
+        } else if (this.cacheService.mode === 'EDIT') {
+            this.edit = [true, true, false, false, this.restService.loggedUser.jefe];
         } else {
-              this.edit = [true, true, true, true, true, false];
+            this.edit = [true, true, true, true, true, false];
         }
     }
 
@@ -43,7 +51,9 @@ export class EditEmployeeComponent implements OnInit {
 
     save(empleado: EmpleadoDTO) {
         this.restService.updateEmpleado(empleado).subscribe(() => {
-            this.notifier.notify('success', 'Actualizado');
+            if (this.cacheService.mode === 'EDIT') {
+                this.notifier.notify('success', 'Actualizado');
+            } else { this.notifier.notify('success', 'Creado'); }
             this.navigation.back();
         });
     }

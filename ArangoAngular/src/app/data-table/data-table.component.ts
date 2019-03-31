@@ -39,6 +39,10 @@ export class DataTableComponent implements OnInit {
     isBorrable = true;
     @Input()
     isEditable = true;
+    @Input()
+    isSolveable = true;
+    @Input()
+    total: any[];
     @Output()
     deleted = new EventEmitter();
     @Output()
@@ -121,6 +125,22 @@ export class DataTableComponent implements OnInit {
         // console.log("openConfirmationDialog");
 
         const message = 'De verdad quieres borrar a: ' + data[this.nameLabel];
+        const accept = () => this.delete(data);
+
+        this.confirmationService.confirm({
+            // tslint:disable-next-line:object-literal-shorthand
+            message: message,
+            // tslint:disable-next-line:object-literal-shorthand
+            accept: accept
+        });
+
+        event.stopPropagation();
+    }
+
+    askSolve(event: MouseEvent, data: any, index: number) {
+        // console.log("openConfirmationDialog");
+        data['id'] = this.dataSource.data[index]['key'];
+        const message = 'Estás seguro?';
         const accept = () => this.delete(data);
 
         this.confirmationService.confirm({

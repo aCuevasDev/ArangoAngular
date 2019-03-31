@@ -1,4 +1,4 @@
 <div *ngIf="!isLoading">
-    <app-data-table [dataObservable]="rankingObservable" [displayedColumns]="displayColumns" nameLabel="nombreCompleto"
-        tipoNuevo="empleado"></app-data-table>
+    <app-data-table [dataObservable]="rankingObservable" [displayedColumns]="display" nameLabel="nombre"
+        [isCreable]="false" [isBorrable]="false" [isEditable]="false"></app-data-table>
 </div>

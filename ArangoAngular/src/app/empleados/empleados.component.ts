@@ -17,7 +17,8 @@ import { EmpladoDTOImp } from '../model/empladodtoimp';
 })
 export class EmpleadosComponent implements OnInit {
     @ViewChild(DataTableComponent) dataTable: DataTableComponent;
-    displayColumns = ['Nombre', 'Apellidos', 'Username', 'Contrasenya', 'Jefe', 'Departamento', 'edit', 'delete'];
+    displayColumns = ['Nombre', 'Apellidos', 'Username', 'Jefe', 'Departamento', 'edit', 'delete'];
+    displayNum = ['', '', '', '', ''];
     isLoading = true;
     empleadosObservable: Observable<EmpleadoDTO[]>;
     constructor(

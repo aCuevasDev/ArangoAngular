@@ -1,3 +1,5 @@
-<p>
-  incidencias works!
-</p>
+<div *ngIf="!isLoading">
+    <app-data-table [dataObservable]="incidenciaObservable" [displayedColumns]="displayColumns" nameLabel="nombre"
+        tipoNuevo="Incidencia" (selected)="onSelect($event)" (deleted)="onDelete($event)" [isCreable]="this.restService.loggedUser.jefe"
+        [isBorrable]="false" [isEditable]="false" [total]="displayNum" [isSolveable]="true"></app-data-table>
+</div>
