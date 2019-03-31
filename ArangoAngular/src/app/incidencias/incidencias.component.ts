@@ -4,6 +4,8 @@ import { RestService } from '../rest.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
+import { CacheService } from '../cache.service';
+import { IncidenciaDTOImp } from '../model/incidenciadtoimp';
 
 @Component({
     selector: 'app-incidencias',
@@ -17,15 +19,18 @@ export class IncidenciasComponent implements OnInit {
     isLoading = true;
     incidenciaObservable: Observable<IncidenciaDTO[]>;
 
-    constructor(public restService: RestService, private router: Router, private notifier: NotifierService) {
+    // tslint:disable-next-line:max-line-length
+    constructor(public restService: RestService, private router: Router, private notifier: NotifierService, private cacheService: CacheService) {
         this.incidenciaObservable = this.restService.getIncidencias();
         this.isLoading = false;
     }
 
-    ngOnInit() {}
+    ngOnInit() { }
 
     onSelect(incidencia: IncidenciaDTO | null) {
-        // this.router.navigate();
+        this.cacheService.cachedData = [new IncidenciaDTOImp(this.restService.loggedUser)];
+        this.cacheService.mode = 'CREATE';
+        this.router.navigate(['/editIncidencia']);
     }
 
     onDelete(incidencia: IncidenciaDTO) {

@@ -19,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NotifierModule } from 'angular-notifier';
 import { DataEditComponent } from './data-edit/data-edit.component';
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
+import { EditIncidenciaComponent } from './edit-incidencia/edit-incidencia.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
     SpinnerComponent,
     DataEditComponent,
     EditEmployeeComponent,
+    EditIncidenciaComponent,
   ],
   imports: [
     AppRoutingModule,

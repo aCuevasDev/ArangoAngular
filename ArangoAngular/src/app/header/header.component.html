@@ -26,7 +26,7 @@
             </i>
         </button>
 
-          <button mat-button routerLink="perfil" *ngIf="restService.loggedUser">Mi Perfil
+          <button mat-button routerLink="editEmpleado" (click)="prepararCache()" *ngIf="restService.loggedUser">Mi Perfil
             <i class="material-icons">
                 person_pin
             </i>

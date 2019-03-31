@@ -5,6 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { IncidenciasComponent } from './incidencias/incidencias.component';
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { RankingComponent } from './ranking/ranking.component';
+import { EventosComponent } from './eventos/eventos.component';
+import { EditIncidenciaComponent } from './edit-incidencia/edit-incidencia.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -13,6 +15,8 @@ const routes: Routes = [
     { path: 'incidencias', component: IncidenciasComponent },
     { path: 'editEmpleado', component: EditEmployeeComponent },
     { path: 'ranking', component: RankingComponent },
+    { path: 'eventos', component: EventosComponent },
+    { path: 'editIncidencia', component: EditIncidenciaComponent },
 
 ];
 

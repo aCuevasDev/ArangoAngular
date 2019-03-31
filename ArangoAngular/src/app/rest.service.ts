@@ -36,6 +36,11 @@ export class RestService {
         return this.http.post<EmpleadoDTO[]>(url, this.loggedUser).pipe(catchError(this.handleError<EmpleadoDTO[]>()));
     }
 
+    createEmpleado(empleado: EmpleadoDTO) {
+        const url = `${this.urlBase}empleado/create`;
+        return this.http.post<EmpleadoDTO>(url, [this.loggedUser, empleado]).pipe(catchError(this.handleError<EmpleadoDTO>()));
+    }
+
     updateEmpleado(empleado: EmpleadoDTO) {
         const url = `${this.urlBase}empleado/update`;
         // tslint:disable-next-line:max-line-length
@@ -50,6 +55,12 @@ export class RestService {
     getIncidencias() {
         const url = `${this.urlBase}incidencia`;
         return this.http.post<IncidenciaDTO[]>(url, this.loggedUser).pipe(catchError(this.handleError<IncidenciaDTO[]>()));
+    }
+    // TODO THIS DOESN'T WORK, BACKEND NOT ABLE TO READ THIS BODY
+    createIncidencia(incidencia: IncidenciaDTO) {
+        const url = `${this.urlBase}empleado/create`;
+        // tslint:disable-next-line:max-line-length
+        return this.http.post<IncidenciaDTO>(url, { user: this.loggedUser, incidencia }).pipe(catchError(this.handleError<IncidenciaDTO>()));
     }
 
     updateIncidencia(incidencia: IncidenciaDTO) {

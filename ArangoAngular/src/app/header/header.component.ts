@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../rest.service';
+import { CacheService } from '../cache.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,14 @@ import { RestService } from '../rest.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public restService: RestService) { }
+  constructor(public restService: RestService, private cacheService: CacheService) { }
 
   ngOnInit() {
+  }
+
+  prepararCache() {
+    this.cacheService.cachedData = [this.restService.loggedUser];
+    this.cacheService.mode = 'EDIT';
   }
 
 }

@@ -33,6 +33,7 @@ export class DataEditComponent implements OnInit {
 
 
     save() {
+        this.data['id'] = this.data['key'];
         this.saving.emit(this.data);
     }
 
