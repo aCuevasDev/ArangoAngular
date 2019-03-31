@@ -1,31 +1,37 @@
 <mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>School Angular</span>
+    <mat-toolbar-row>
+        <span>Arango Angular</span>
 
-    <button mat-button routerLink="empleados" >Empleados
-      <i class="material-icons">
-        people
-      </i>
-    </button>
+        <button mat-button *ngIf="restService.loggedUser && restService.loggedUser.jefe" routerLink="empleados">Empleados
+            <i class="material-icons">
+                people
+            </i>
+        </button>
 
-        <button mat-button routerLink="incidencias" >Incidencias
-      <i class="material-icons">
-        people
-      </i>
-    </button>
+        <button mat-button routerLink="incidencias" *ngIf="restService.loggedUser">Incidencias
+            <i class="material-icons">
+                list
+            </i>
+        </button>
 
-        <button mat-button routerLink="eventos" >Eventos
-      <i class="material-icons">
-        people
-      </i>
-    </button>
+        <button mat-button routerLink="eventos" *ngIf="restService.loggedUser">Eventos
+            <i class="material-icons">
+                event
+            </i>
+        </button>
 
-        <button mat-button routerLink="ranking" >Ranking
-      <i class="material-icons">
-        people
-      </i>
-    </button>
+        <button mat-button routerLink="ranking" *ngIf="restService.loggedUser">Ranking
+            <i class="material-icons">
+                score
+            </i>
+        </button>
 
-  </mat-toolbar-row>
+          <button mat-button routerLink="perfil" *ngIf="restService.loggedUser">Mi Perfil
+            <i class="material-icons">
+                person_pin
+            </i>
+        </button>
+
+    </mat-toolbar-row>
 
 </mat-toolbar>

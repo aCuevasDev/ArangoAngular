@@ -23,11 +23,11 @@ export class IncidenciasComponent implements OnInit {
         console.log('empleados');
     }
 
-    onSelect(incidencia: IncidenciaDTO | null){
+    onSelect(incidencia: IncidenciaDTO | null) {
         // this.router.navigate();
     }
 
-    onDelete(incidencia: IncidenciaDTO){
+    onDelete(incidencia: IncidenciaDTO) {
         // this.restService.deleteEmpleado().subscribe();
     }
 }

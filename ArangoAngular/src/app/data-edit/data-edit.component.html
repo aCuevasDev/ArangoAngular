@@ -1,0 +1,16 @@
+<form *ngIf="data" #editForm="ngForm" class="form-container" (ngSubmit)="save()">
+
+    <mat-form-field appearance="legacy" *ngFor="let value of displayValues; let rowIndex = index">
+        <mat-label>{{value}}</mat-label>
+        <input name="{{value}}" matInput [(ngModel)]="data[value.toLowerCase()]" placeholder="{{value}}" [disabled]="!editable[rowIndex]">
+        <mat-hint>{{hintValues[rowIndex]}}</mat-hint>
+    </mat-form-field>
+
+    <div class="button-row">
+        <span class="filler"></span>
+        <button mat-raised-button type="submit" [disabled]="editForm.invalid">Save</button>
+        <span class="filler"></span>
+        <button mat-raised-button type="button" (click)="cancel()">Cancel</button>
+    </div>
+
+</form>

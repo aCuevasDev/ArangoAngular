@@ -41,7 +41,7 @@
             </th>
             <td mat-cell *matCellDef="let tableData; let rowIndex = index">
                 <button mat-button type="button" [@mouseState]="mouseState[0][rowIndex]" (mouseenter)="toggleMouseState(0, rowIndex)"
-                    (mouseleave)="toggleMouseState(0, rowIndex)" (click)="edit(tableData)">Editar</button>
+                    (mouseleave)="toggleMouseState(0, rowIndex)" (click)="edit(tableData)" [disabled]="!isEditable">Editar</button>
             </td>
         </ng-container>
 
@@ -53,7 +53,7 @@
             </th>
             <td mat-cell *matCellDef="let tableData; let rowIndex = index">
                 <button mat-button type="button" [@mouseState]="mouseState[1][rowIndex]" (mouseenter)="toggleMouseState(1, rowIndex)"
-                    (mouseleave)="toggleMouseState(1, rowIndex)" (click)="askDelete($event,tableData)">Borrar</button>
+                    (mouseleave)="toggleMouseState(1, rowIndex)" (click)="askDelete($event,tableData)" [disabled]="!isEditable">Borrar</button>
             </td>
         </ng-container>
 
@@ -62,7 +62,7 @@
 
     </table>
 
-    <button mat-raised-button id="newPerson" *ngIf="!isLoading" type="button" (click)="edit(null)" [@mouseState]="mouseState[2][0]"
+    <button mat-raised-button id="newPerson" *ngIf="!isLoading && isCreable" type="button" (click)="edit(null)" [@mouseState]="mouseState[2][0]"
         (mouseenter)="toggleMouseState(2, 0)" (mouseleave)="toggleMouseState(2, 0)">
         Nuevo {{tipoNuevo}}
         <i class="material-icons">

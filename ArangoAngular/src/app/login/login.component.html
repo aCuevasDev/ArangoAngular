@@ -1,3 +1,19 @@
-<p>
-  login works!
-</p>
+
+<form class="example-form" (submit)="onLogin()">
+    <h2>Login</h2>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Username" [formControl]="usernameFormControl" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="usernameFormControl.hasError('required')">
+            Se requiere un <strong>username</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input type="password" matInput placeholder="Password" [formControl]="passFormControl" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="passFormControl.hasError('required')">
+            Se requiere una <strong>contraseña</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit">Login</button>
+</form>

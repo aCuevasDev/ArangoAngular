@@ -15,6 +15,10 @@ import { DepartamentosComponent } from './departamentos/departamentos.component'
 import { PrimeNGModule } from './primeng.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NotifierModule } from 'angular-notifier';
+import { DataEditComponent } from './data-edit/data-edit.component';
+import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 
 
 @NgModule({
@@ -29,12 +33,16 @@ import { SpinnerComponent } from './spinner/spinner.component';
     DataTableComponent,
     DepartamentosComponent,
     SpinnerComponent,
+    DataEditComponent,
+    EditEmployeeComponent,
   ],
   imports: [
     AppRoutingModule,
     MaterialModule,
     PrimeNGModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    NotifierModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

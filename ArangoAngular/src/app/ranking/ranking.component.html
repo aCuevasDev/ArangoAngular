@@ -1,3 +1,4 @@
-<p>
-  ranking works!
-</p>
+<div *ngIf="!isLoading">
+    <app-data-table [dataObservable]="rankingObservable" [displayedColumns]="displayColumns" nameLabel="nombreCompleto"
+        tipoNuevo="empleado"></app-data-table>
+</div>

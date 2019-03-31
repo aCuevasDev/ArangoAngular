@@ -1,4 +1,4 @@
 <div *ngIf="!isLoading">
     <app-data-table [dataObservable]="empleadosObservable" [displayedColumns]="displayColumns" nameLabel="nombreCompleto"
-        tipoNuevo="empleado"></app-data-table>
+        tipoNuevo="empleado" (selected)="onSelect($event)" (deleted)="onDelete($event)" [crearNuevo]="this.restService.loggedUser.jefe" ></app-data-table>
 </div>

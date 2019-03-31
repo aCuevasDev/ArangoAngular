@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, ViewChild, Output } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { RestService } from '../rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EventEmitter } from 'events';
+import { EventEmitter } from '@angular/core';
 import { ConfirmationService } from 'primeng/primeng';
 import { style, transition, animate, keyframes, state, trigger } from '@angular/animations';
 import { Observable } from 'rxjs';
@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
     selector: 'app-data-table',
     templateUrl: './data-table.component.html',
     styleUrls: ['./data-table.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [
         trigger('mouseState', [
             state('out', style({
@@ -32,12 +33,16 @@ export class DataTableComponent implements OnInit {
     nameLabel: string;
     @Input()
     tipoNuevo: string;
-    // tslint:disable-next-line:no-output-on-prefix
+    @Input()
+    isCreable = true;
+    @Input()
+    isBorrable = true;
+    @Input()
+    isEditable = true;
     @Output()
-    onDelete = new EventEmitter();
-    // tslint:disable-next-line:no-output-on-prefix
+    deleted = new EventEmitter();
     @Output()
-    onSelect = new EventEmitter();
+    selected = new EventEmitter();
     dataSource: MatTableDataSource<any>;
     paginator: MatPaginator;
     sort: MatSort;
@@ -56,7 +61,8 @@ export class DataTableComponent implements OnInit {
         private restService: RestService,
         private route: ActivatedRoute,
         private confirmationService: ConfirmationService,
-        private router: Router) {
+        private router: Router,
+        private changeDet: ChangeDetectorRef) {
         this.dataSource = new MatTableDataSource();
     }
 
@@ -93,7 +99,7 @@ export class DataTableComponent implements OnInit {
 
     delete(data: any) {
         console.log('delete');
-        this.onDelete.emit(data);
+        this.deleted.emit(data);
     }
 
     toggleMouseState(buttonIndex: number, index: number) {
@@ -102,7 +108,13 @@ export class DataTableComponent implements OnInit {
 
     edit(data: any | null) {
         console.log('create or edit');
-        this.onSelect.emit(data);
+        this.selected.emit(data);
+    }
+
+    public refresh(observable: Observable<any>) {
+        this.dataObservable = observable;
+        this.load();
+        this.changeDet.markForCheck();
     }
 
     askDelete(event: MouseEvent, data: any) {
