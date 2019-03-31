@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { EmpleadoDTO, IncidenciaDTO, RankingDTO } from './model/model';
+import { EmpleadoDTO, IncidenciaDTO, RankingDTO, DepartamentoDTO } from './model/model';
 import { catchError, map } from 'rxjs/operators';
 import { NotifierService } from 'angular-notifier';
 import { Observable, of } from 'rxjs';
@@ -71,6 +71,22 @@ export class RestService {
     getRanking() {
         const url = `${this.urlBase}ranking`;
         return this.http.post<RankingDTO>(url, this.loggedUser).pipe(catchError(this.handleError<RankingDTO>()));
+    }
+
+    getDepartamentos() {
+        const url = `${this.urlBase}departamento`;
+        return this.http.post<DepartamentoDTO[]>(url, this.loggedUser).pipe(catchError(this.handleError<DepartamentoDTO[]>()));
+    }
+
+    createDepartamento(dept: DepartamentoDTO) {
+        const url = `${this.urlBase}departamento/create`;
+        return this.http.post<DepartamentoDTO>(url, { user: this.loggedUser, dept}).pipe(catchError(this.handleError<DepartamentoDTO>()));
+    }
+
+    updateDepartamento(dept: DepartamentoDTO) {
+        const url = `${this.urlBase}departamento/update`;
+        // tslint:disable-next-line:max-line-length
+        return this.http.post<DepartamentoDTO>(url, { user: this.loggedUser, dept}).pipe(catchError(this.handleError<DepartamentoDTO>()));
     }
 
     // private addUser() {

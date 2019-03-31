@@ -46,7 +46,7 @@ export class EmpleadosComponent implements OnInit {
 
     onDelete(empleado: EmpleadoDTO) {
         this.restService.deleteEmpleado(empleado).subscribe(() => {
-            this.empleadosObservable = this.restService.getEmpleados();
+            // this.empleadosObservable = this.restService.getEmpleados();
             this.dataTable.refresh(this.restService.getEmpleados());
             this.notifier.notify('success', 'Hecho');
         });

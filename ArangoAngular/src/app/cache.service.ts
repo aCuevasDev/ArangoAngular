@@ -11,11 +11,9 @@ export class CacheService {
     constructor() { }
 
     getData() {
-        if (this.cachedData) {
-            if (this.cachedData.length > 1) {
-                return this.cachedData;
-            } else { return this.cachedData[0]; }
-        }
+        if (this.cachedData && this.cachedData.length > 1) {
+            return this.cachedData;
+        } else { return this.cachedData[0]; }
         this.clearData();
     }
 

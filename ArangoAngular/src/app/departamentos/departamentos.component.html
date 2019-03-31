@@ -1,3 +1,4 @@
-<p>
-  departamentos works!
-</p>
+<div *ngIf="!isLoading">
+    <app-data-table [dataObservable]="departamentosObservable" [displayedColumns]="displayColumns" nameLabel="nombre"
+        tipoNuevo="Departamento" (selected)="onSelect($event)" (deleted)="onDelete($event)" [isCreable]="this.restService.loggedUser.jefe" [isBorrable]="this.restService.loggedUser.jefe" [isEditable]="this.restService.loggedUser.jefe" [total]="displayNum"></app-data-table>
+</div>
