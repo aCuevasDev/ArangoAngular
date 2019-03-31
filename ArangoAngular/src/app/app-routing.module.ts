@@ -7,6 +7,7 @@ import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { EventosComponent } from './eventos/eventos.component';
 import { EditIncidenciaComponent } from './edit-incidencia/edit-incidencia.component';
+import { DepartamentosComponent } from './departamentos/departamentos.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -17,6 +18,7 @@ const routes: Routes = [
     { path: 'ranking', component: RankingComponent },
     { path: 'eventos', component: EventosComponent },
     { path: 'editIncidencia', component: EditIncidenciaComponent },
+    { path: 'departamentos', component: DepartamentosComponent },
 
 ];
 
