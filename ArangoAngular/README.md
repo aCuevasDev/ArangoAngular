@@ -1,3 +1,5 @@
+# NOTA: HE CAMBIADO INCIDENCIASDTO Y LE HE PUESTO SETTER/GETTER YA QUE SINO LA ID ES NULA
+
 # ArangoAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.7.
