@@ -16,7 +16,7 @@ import { DepartamentoDTOImpl } from '../model/departamentodtoimpl';
 export class DepartamentosComponent implements OnInit {
 
     @ViewChild(DataTableComponent) dataTable: DataTableComponent;
-    displayColumns = ['Nombre', 'Jefe', 'edit', 'delete'];
+    displayColumns = ['Nombre', 'Jefe', 'edit'];
     displayNum = ['', ''];
     isLoading = true;
     departamentosObservable: Observable<DepartamentoDTO[]>;
@@ -26,7 +26,10 @@ export class DepartamentosComponent implements OnInit {
         public restService: RestService,
         private router: Router,
         private notifier: NotifierService,
-        private cacheService: CacheService) { }
+        private cacheService: CacheService) {
+        this.departamentosObservable = this.restService.getDepartamentos();
+        this.isLoading = false;
+    }
 
     ngOnInit() {
 

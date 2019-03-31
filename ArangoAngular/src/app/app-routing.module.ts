@@ -8,6 +8,7 @@ import { RankingComponent } from './ranking/ranking.component';
 import { EventosComponent } from './eventos/eventos.component';
 import { EditIncidenciaComponent } from './edit-incidencia/edit-incidencia.component';
 import { DepartamentosComponent } from './departamentos/departamentos.component';
+import { EditDepartamentosComponent } from './edit-departamentos/edit-departamentos.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'eventos', component: EventosComponent },
     { path: 'editIncidencia', component: EditIncidenciaComponent },
     { path: 'departamentos', component: DepartamentosComponent },
+    { path: 'editDepartamento', component: EditDepartamentosComponent },
 
 ];
 

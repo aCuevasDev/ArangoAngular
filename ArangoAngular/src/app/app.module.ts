@@ -20,6 +20,7 @@ import { NotifierModule } from 'angular-notifier';
 import { DataEditComponent } from './data-edit/data-edit.component';
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 import { EditIncidenciaComponent } from './edit-incidencia/edit-incidencia.component';
+import { EditDepartamentosComponent } from './edit-departamentos/edit-departamentos.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { EditIncidenciaComponent } from './edit-incidencia/edit-incidencia.compo
     DataEditComponent,
     EditEmployeeComponent,
     EditIncidenciaComponent,
+    EditDepartamentosComponent,
   ],
   imports: [
     AppRoutingModule,

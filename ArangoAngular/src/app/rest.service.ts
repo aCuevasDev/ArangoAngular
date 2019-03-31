@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { EmpleadoDTO, IncidenciaDTO, RankingDTO, DepartamentoDTO } from './model/model';
+import { EmpleadoDTO, IncidenciaDTO, RankingDTO, DepartamentoDTO, Query } from './model/model';
 import { catchError, map } from 'rxjs/operators';
 import { NotifierService } from 'angular-notifier';
 import { Observable, of } from 'rxjs';
@@ -58,14 +58,24 @@ export class RestService {
     }
     // TODO THIS DOESN'T WORK, BACKEND NOT ABLE TO READ THIS BODY
     createIncidencia(incidencia: IncidenciaDTO) {
-        const url = `${this.urlBase}empleado/create`;
+        const url = `${this.urlBase}incidencia/create`;
         // tslint:disable-next-line:max-line-length
-        return this.http.post<IncidenciaDTO>(url, { user: this.loggedUser, incidencia }).pipe(catchError(this.handleError<IncidenciaDTO>()));
+        // tslint:disable-next-line:object-literal-shorthand
+        const query: Query = { loggedUser: this.loggedUser, incidencia: incidencia };
+        return this.http.post<IncidenciaDTO>(url, query).pipe(catchError(this.handleError<IncidenciaDTO>()));
     }
 
     updateIncidencia(incidencia: IncidenciaDTO) {
         const url = `${this.urlBase}incidencia/update`;
         return this.http.post<IncidenciaDTO[]>(url, incidencia).pipe(catchError(this.handleError<IncidenciaDTO[]>()));
+    }
+
+    deleteIncidencia(incidencia: IncidenciaDTO) {
+        const url = `${this.urlBase}incidencia/delete`;
+        // tslint:disable-next-line:max-line-length
+        // tslint:disable-next-line:object-literal-shorthand
+        const query: Query = { loggedUser: this.loggedUser, incidencia: incidencia };
+        return this.http.post<IncidenciaDTO>(url, query).pipe(catchError(this.handleError<IncidenciaDTO>()));
     }
 
     getRanking() {
@@ -80,13 +90,22 @@ export class RestService {
 
     createDepartamento(dept: DepartamentoDTO) {
         const url = `${this.urlBase}departamento/create`;
-        return this.http.post<DepartamentoDTO>(url, { user: this.loggedUser, dept}).pipe(catchError(this.handleError<DepartamentoDTO>()));
+        const query: Query = { loggedUser: this.loggedUser, departamento: dept };
+        // tslint:disable-next-line:max-line-length
+        return this.http.post(url, query).pipe(catchError(this.handleError()));
     }
 
     updateDepartamento(dept: DepartamentoDTO) {
         const url = `${this.urlBase}departamento/update`;
         // tslint:disable-next-line:max-line-length
-        return this.http.post<DepartamentoDTO>(url, { user: this.loggedUser, dept}).pipe(catchError(this.handleError<DepartamentoDTO>()));
+        const query: Query = { loggedUser: this.loggedUser, departamento: dept };
+        return this.http.post<DepartamentoDTO>(url, query).pipe(catchError(this.handleError<DepartamentoDTO>()));
+    }
+
+    deleteDepartamento(dept: DepartamentoDTO) {
+        const url = `${this.urlBase}departamento/delete`;
+        const query: Query = { loggedUser: this.loggedUser, departamento: dept };
+        return this.http.post(url, query).pipe(catchError(this.handleError()));
     }
 
     // private addUser() {

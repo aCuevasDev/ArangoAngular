@@ -12,9 +12,12 @@ export class RankingComponent implements OnInit {
 
     rankingObservable: Observable<RankingDTO>;
     display = ['Nombre', 'Incidencias Resueltas'];
+    displayNum = ['', ''];
+    isLoading = true;
 
     constructor(private restService: RestService) {
         this.rankingObservable = this.restService.getRanking();
+        this.isLoading = false;
     }
 
     ngOnInit() {

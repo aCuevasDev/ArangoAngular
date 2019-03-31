@@ -6,6 +6,15 @@ export interface DepartamentoDTO extends IKeyable {
     jefe: string;
 }
 
+export interface Query {
+    loggedUser: EmpleadoDTO;
+    user?: EmpleadoDTO;
+    incidencia?: IncidenciaDTO;
+    departamento?: DepartamentoDTO;
+    evento?: EventoDTO;
+    ranking?: RankingDTO;
+}
+
 export interface EmpleadoDTO extends IKeyable {
     nombre: string;
     apellidos: string;

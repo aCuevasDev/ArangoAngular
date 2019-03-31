@@ -43,5 +43,6 @@ export class EditIncidenciaComponent implements OnInit {
 
     save(incidencia: IncidenciaDTO) {
         this.restService.createIncidencia(incidencia).subscribe(() => this.notifier.notify('success', 'Creado'));
+
     }
 }
